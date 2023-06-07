@@ -44,13 +44,16 @@ public class AuthConfig {
 				"/ingredients/refresh/**" , "/ingredients/refresh-all" , "/ingredients/delete/**" , "/ingredients/delete-all",
 				};
 		String[] userMatchers = {"/pizzas/" , "/pizzas/show/**" , "/ingredients/" , "/special-offers/" , "/special-offers/show/**"};
+		String[] permitAllMatchers = {"/" , "/api/v1/pizzas/"};
 		
-		return http.authorizeRequests(a->a
+		return http
+				.csrf(c->c.disable())
+				.authorizeRequests(a->a
+				.requestMatchers(permitAllMatchers).permitAll()
 				.requestMatchers(userMatchers).hasAnyAuthority("USER" , "ADMIN")
 				.requestMatchers(HttpMethod.POST , "/pizzas/").hasAnyAuthority("USER" , "ADMIN")
 				.requestMatchers(adminMatchers).hasAnyAuthority("ADMIN")
 //				.requestMatchers("").hasAuthority("USER")
-				.requestMatchers("/").permitAll()
 				)
 				.formLogin(f->f.permitAll())
 				.logout(l->l.logoutSuccessUrl("/"))

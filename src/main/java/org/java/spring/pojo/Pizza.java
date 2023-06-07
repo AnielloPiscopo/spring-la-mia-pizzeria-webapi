@@ -6,6 +6,11 @@ import java.util.List;
 import org.hibernate.validator.constraints.URL;
 import org.java.spring.helper.Helper;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,12 +26,14 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Pizza {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@OneToMany(mappedBy = "pizza" , cascade = CascadeType.REMOVE)
+	@JsonManagedReference
 	private List<SpecialOffer> specialOffers;
 	
 	@ManyToMany
@@ -88,6 +95,7 @@ public class Pizza {
 		this.ingredients = ingredients;
 	}
 	
+	@JsonIgnore
 	public void setIngredients(Ingredient[] ingredients) {
 		setIngredients(Arrays.asList(ingredients));
 	}

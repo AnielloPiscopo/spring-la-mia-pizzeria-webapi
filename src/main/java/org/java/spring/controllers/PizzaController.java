@@ -194,7 +194,7 @@ public class PizzaController {
 	 */
 	@PostMapping("/soft-delete/{id}")
 	public String softDelete(@PathVariable("id") int id) {
-		Optional<Pizza> optPizza = serv.findById(id);
+		Optional<Pizza> optPizza = serv.findByIdWithRel(id);
 		Pizza pizza = optPizza.get();
 		changeTheDeletedValue(pizza, true);
 		return "redirect:/pizzas/";
@@ -220,7 +220,7 @@ public class PizzaController {
 	 */
 	@PostMapping("/refresh/{id}")
 	public String refresh(@PathVariable("id") int id) {
-		Optional<Pizza> optPizza = serv.findById(id);
+		Optional<Pizza> optPizza = serv.findByIdWithRel(id);
 		Pizza pizza = optPizza.get();
 		changeTheDeletedValue(pizza, false);
 		return "redirect:/pizzas/trash";
