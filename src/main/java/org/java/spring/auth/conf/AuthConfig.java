@@ -49,11 +49,11 @@ public class AuthConfig {
 		return http
 				.csrf(c->c.disable())
 				.authorizeRequests(a->a
-				.requestMatchers(permitAllMatchers).permitAll()
 				.requestMatchers(userMatchers).hasAnyAuthority("USER" , "ADMIN")
 				.requestMatchers(HttpMethod.POST , "/pizzas/").hasAnyAuthority("USER" , "ADMIN")
 				.requestMatchers(adminMatchers).hasAnyAuthority("ADMIN")
 //				.requestMatchers("").hasAuthority("USER")
+				.requestMatchers(permitAllMatchers).permitAll()
 				)
 				.formLogin(f->f.permitAll())
 				.logout(l->l.logoutSuccessUrl("/"))
