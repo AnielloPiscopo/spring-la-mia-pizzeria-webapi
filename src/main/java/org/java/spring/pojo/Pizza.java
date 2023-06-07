@@ -8,7 +8,6 @@ import org.java.spring.helper.Helper;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
@@ -33,7 +32,6 @@ public class Pizza {
 	private int id;
 	
 	@OneToMany(mappedBy = "pizza" , cascade = CascadeType.REMOVE)
-	@JsonManagedReference
 	private List<SpecialOffer> specialOffers;
 	
 	@ManyToMany
