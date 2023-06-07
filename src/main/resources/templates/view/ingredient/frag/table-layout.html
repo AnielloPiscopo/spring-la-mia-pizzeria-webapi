@@ -1,0 +1,99 @@
+<div class="my_table-container" th:fragment="table(index,ingredients)">
+  <div class="my_container">
+    <h1>[[${title}]]</h1>
+
+    <form
+      method="POST"
+      th:if="${index}"
+      th:action="@{/ingredients/create}"
+      sec:authorize="hasAuthority('ADMIN')"
+    >
+      <input type="text" name="name" />
+      <button type="submit">Crea nuovo elemento</button>
+    </form>
+
+    <div class="my_btn-container">
+      <a
+        th:if="${index}"
+        th:href="@{/ingredients/trash}"
+        sec:authorize="hasAuthority('ADMIN')"
+        >Go to the recycle bean</a
+      >
+      <a th:unless="${index}" th:href="@{/ingredients/}">Return back</a>
+
+      <form
+        th:if="${index}"
+        th:action="@{/ingredients/soft-delete-all}"
+        method="POST"
+        sec:authorize="hasAuthority('ADMIN')"
+      >
+        <button type="submit">Trash all</button>
+      </form>
+
+      <form
+        th:unless="${index}"
+        th:action="@{/ingredients/refresh-all}"
+        method="POST"
+      >
+        <button type="submit">Refresh all</button>
+      </form>
+
+      <form
+        th:unless="${index}"
+        th:action="@{/ingredients/delete-all}"
+        method="POST"
+      >
+        <button type="submit">Delete all</button>
+      </form>
+    </div>
+  </div>
+
+  <table th:unless="${ingredients.isEmpty()}">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <td>Nome</td>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr th:each="ingredient : ${ingredients}" th:object="${ingredient}">
+        <td scope="row">
+          <span>[[*{id}]]</span>
+        </td>
+        <td>
+          <span>[[*{name}]]</span>
+        </td>
+        <td>
+          <form
+            th:if="${index}"
+            th:action="@{/ingredients/soft-delete/{id} (id=*{id})}"
+            method="POST"
+            sec:authorize="hasAuthority('ADMIN')"
+          >
+            <button type="submit">Send to the recycle bean</button>
+          </form>
+
+          <form
+            th:unless="${index}"
+            th:action="@{/ingredients/refresh/{id} (id=*{id})}"
+            method="POST"
+          >
+            <button type="submit">Refresh</button>
+          </form>
+
+          <form
+            th:unless="${index}"
+            th:action="@{/ingredients/delete/{id} (id=*{id})}"
+            method="POST"
+          >
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div th:if="${ingredients.isEmpty()}">Non ci sono elementi nella tabella</div>
+</div>

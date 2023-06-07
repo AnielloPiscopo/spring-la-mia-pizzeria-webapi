@@ -1,0 +1,71 @@
+<form
+  method="POST"
+  th:fragment="form(create , btnText , pizza)"
+  th:action="${create} ? @{/pizzas/create} : @{/pizzas/edit/{id} (id=${pizza.id})}"
+  th:object="${pizza}"
+>
+  <div class="my_form-el">
+    <input
+      type="text"
+      name="name"
+      th:value="*{name}"
+      placeholder="Inserisci nome"
+      modelAttribute="pizza"
+    />
+    <span th:if="${errors != null && errors.hasFieldErrors('name')}"
+      >[[${errors.getFieldError('name').defaultMessage}]]</span
+    >
+  </div>
+  <div class="my_form-el">
+    <textarea
+      name="description"
+      id=""
+      cols="30"
+      rows="10"
+      placeholder="Inserisci descrizione"
+    >
+[[*{description}]]</textarea
+    >
+    <span th:if="${errors != null && errors.hasFieldErrors('description')}"
+      >[[${errors.getFieldError('description').defaultMessage}]]</span
+    >
+  </div>
+  <div class="my_form-el">
+    <input
+      type="text"
+      name="imgUrl"
+      th:value="*{imgUrl}"
+      placeholder="Inserisci l'url dell'immagine"
+    />
+    <span th:if="${errors != null && errors.hasFieldErrors('imgUrl')}"
+      >[[${errors.getFieldError('imgUrl').defaultMessage}]]</span
+    >
+  </div>
+  <div class="my_form-el">
+    <input
+      type="number"
+      name="price"
+      th:value="*{price}"
+      placeholder="Inserisci il prezzo"
+      step="0.01"
+    />
+    <span th:if="${errors != null && errors.hasFieldErrors('price')}"
+      >[[${errors.getFieldError('price').defaultMessage}]]</span
+    >
+  </div>
+
+  <div class="my-form-el">
+    <div th:each="ingredient : ${ingredients}" th:object="${ingredient}">
+      <input
+        th:id="${'ingredient-' + ingredient.id}"
+        th:value="*{id}"
+        th:checked="${create} ? false : ${pizza.ingredients.contains(ingredient)}"
+        type="checkbox"
+        name="ingredients"
+      />
+      <label th:for="${'ingredient-' + ingredient.id}">[[ *{name} ]]</label>
+    </div>
+  </div>
+
+  <button type="submit">[[${btnText}]]</button>
+</form>

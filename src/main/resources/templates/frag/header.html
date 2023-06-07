@@ -1,0 +1,55 @@
+<header th:fragment="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" th:href="@{/}">
+        <img src="#" alt="Logo" />
+      </a>
+      <a
+        role="button"
+        class="navbar-burger burger"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarMenu"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a
+          class="navbar-item"
+          th:href="@{/login}"
+          sec:authorize="!isAuthenticated()"
+          >Login</a
+        >
+        <a
+          class="navbar-item"
+          th:href="@{/logout}"
+          sec:authorize="hasAnyAuthority('USER' , 'ADMIN')"
+          >Logout</a
+        >
+        <a
+          class="navbar-item"
+          th:href="@{/pizzas/}"
+          sec:authorize="hasAnyAuthority('USER' , 'ADMIN')"
+          >Lista pizze</a
+        >
+        <a
+          class="navbar-item"
+          th:href="@{/special-offers/}"
+          sec:authorize="hasAnyAuthority('USER' , 'ADMIN')"
+          >Lista offerte speciali</a
+        >
+        <a
+          class="navbar-item"
+          th:href="@{/ingredients/}"
+          sec:authorize="hasAnyAuthority('USER' , 'ADMIN')"
+          >Lista ingredienti</a
+        >
+      </div>
+    </div>
+  </nav>
+</header>

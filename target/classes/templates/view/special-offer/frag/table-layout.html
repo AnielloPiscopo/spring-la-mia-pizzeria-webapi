@@ -1,0 +1,121 @@
+<div class="my_table-container" th:fragment="table(index,specialOffers)">
+  <div class="my_container">
+    <h1>[[${title}]]</h1>
+
+    <div class="my_btn-container">
+      <a
+        th:if="${index}"
+        th:href="@{/special-offers/create}"
+        sec:authorize="hasAuthority('ADMIN')"
+        >Create new Special Offer</a
+      >
+      <a
+        th:if="${index}"
+        th:href="@{/special-offers/trash}"
+        sec:authorize="hasAuthority('ADMIN')"
+        >Go to the recycle bean</a
+      >
+      <a th:unless="${index}" th:href="@{/special-offers/}">Return back</a>
+
+      <form
+        th:if="${index}"
+        th:action="@{/special-offers/soft-delete-all}"
+        method="POST"
+        sec:authorize="hasAuthority('ADMIN')"
+      >
+        <button type="submit">Trash all</button>
+      </form>
+
+      <form
+        th:unless="${index}"
+        th:action="@{/special-offers/refresh-all}"
+        method="POST"
+      >
+        <button type="submit">Refresh all</button>
+      </form>
+
+      <form
+        th:unless="${index}"
+        th:action="@{/special-offers/delete-all}"
+        method="POST"
+      >
+        <button type="submit">Delete all</button>
+      </form>
+    </div>
+  </div>
+
+  <table th:unless="${specialOffers.isEmpty()}">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <td>Titolo</td>
+        <td>Inizio</td>
+        <td>Fine</td>
+        <td>Sconto</td>
+        <td>Pizza associata</td>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr th:each="specialOffer : ${specialOffers}" th:object="${specialOffer}">
+        <td scope="row">
+          <span>[[*{id}]]</span>
+        </td>
+        <td>
+          <span>[[*{title}]]</span>
+        </td>
+        <td>
+          <span>[[*{start}]]</span>
+        </td>
+        <td>
+          <span>[[*{end}]]</span>
+        </td>
+        <td>
+          <span>[[*{discount}]] %</span>
+        </td>
+        <td>
+          <span>[[*{pizza}]]</span>
+        </td>
+        <td>
+          <a th:href="@{/special-offers/{id} (id=*{id})}">Show</a>
+          <a
+            th:if="${index}"
+            th:href="@{/special-offers/edit/{id} (id=*{id})}"
+            sec:authorize="hasAuthority('ADMIN')"
+            >Edit</a
+          >
+
+          <form
+            th:if="${index}"
+            th:action="@{/special-offers/soft-delete/{id} (id=*{id})}"
+            method="POST"
+            sec:authorize="hasAuthority('ADMIN')"
+          >
+            <button type="submit">Send to the recycle bean</button>
+          </form>
+
+          <form
+            th:unless="${index}"
+            th:action="@{/special-offers/refresh/{id} (id=*{id})}"
+            method="POST"
+          >
+            <button type="submit">Refresh</button>
+          </form>
+
+          <form
+            th:unless="${index}"
+            th:action="@{/special-offers/delete/{id} (id=*{id})}"
+            method="POST"
+          >
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div th:if="${specialOffers.isEmpty()}">
+    Non ci sono elementi nella tabella
+  </div>
+</div>

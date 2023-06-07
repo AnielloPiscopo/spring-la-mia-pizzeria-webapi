@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ita" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{frag/main-layout :: head(${title})}"> </head>
+
+  <body>
+    <header th:replace="~{frag/header :: header}"></header>
+    <main th:object="${pizza}">
+      <h1>[[*{name}]]</h1>
+      <img th:src="@{imgUrl}" alt="Immagine a caso" />
+      <p>[[*{description}]]</p>
+      <div>[[*{price}]]$</div>
+
+      <a th:href="@{/pizzas/}">Go to index</a>
+
+      <ul>
+        <li
+          th:each="specialOffer : *{specialOffers}"
+          th:object="${specialOffer}"
+        >
+          <div>[[*{title}]]</div>
+          <div>[[*{start}]] - [[*{end}]]</div>
+          <div>[[*{discount}]]%</div>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>
