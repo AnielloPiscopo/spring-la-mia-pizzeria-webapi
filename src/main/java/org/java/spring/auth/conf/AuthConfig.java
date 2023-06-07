@@ -43,7 +43,7 @@ public class AuthConfig {
 				"/ingredients/create" , "/ingredients/edit/**" , "/ingredients/trash" ,"/ingredients/soft-delete/**" , "/ingredients/soft-delete-all" ,
 				"/ingredients/refresh/**" , "/ingredients/refresh-all" , "/ingredients/delete/**" , "/ingredients/delete-all",
 				};
-		String[] userMatchers = {"/pizzas/" , "/pizzas/show/**" , "/ingredients/" , "/special-offers/" , "/special-offers/show/**"};
+		String[] userMatchers = {"*/","/pizzas/show/**" , "/ingredients/" , "/special-offers/" , "/special-offers/show/**"};
 		String[] permitAllMatchers = {"/" , "/api/v1/pizzas/"};
 		
 		return http
@@ -52,7 +52,6 @@ public class AuthConfig {
 				.requestMatchers(userMatchers).hasAnyAuthority("USER" , "ADMIN")
 				.requestMatchers(HttpMethod.POST , "/pizzas/").hasAnyAuthority("USER" , "ADMIN")
 				.requestMatchers(adminMatchers).hasAnyAuthority("ADMIN")
-//				.requestMatchers("").hasAuthority("USER")
 				.requestMatchers(permitAllMatchers).permitAll()
 				)
 				.formLogin(f->f.permitAll())
