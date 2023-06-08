@@ -10,6 +10,7 @@ export default {
       store,
       deleted: false,
       pizzasList: [],
+      filter: "",
       apiUrlSpecificSection: "/pizzas",
     };
   },
@@ -41,21 +42,24 @@ export default {
 </script>
 
 <template>
+  <input type="text" v-model="filter" />
   <div>
     <router-link :to="{ name: 'pizzaCreate' }">Aggiungi pizza</router-link>
   </div>
   <div>
     <ul>
       <li v-for="pizza in pizzasList">
-        <div>
-          <div>{{ pizza.name }}</div>
-          <div>{{ pizza.description }}</div>
-          <div>{{ pizza.imgUrl }}</div>
-          <div>{{ pizza.price }} &euro;</div>
-          <div>{{ pizza.discountedPrice }} &euro;</div>
-        </div>
-        <div>
-          <span @click="deletePizza()">Elimina</span>
+        <div v-if="pizza.name.includes(filter)">
+          <div>
+            <div>{{ pizza.name }}</div>
+            <div>{{ pizza.description }}</div>
+            <div>{{ pizza.imgUrl }}</div>
+            <div>{{ pizza.price }} &euro;</div>
+            <div>{{ pizza.discountedPrice }} &euro;</div>
+          </div>
+          <div>
+            <span @click="deletePizza()">Elimina</span>
+          </div>
         </div>
       </li>
     </ul>
