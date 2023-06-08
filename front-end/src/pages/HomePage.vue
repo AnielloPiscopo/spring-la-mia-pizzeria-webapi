@@ -1,5 +1,11 @@
-<script></script>
+<script>
+export default {
+  name: "HomePage",
+};
+</script>
 
-<template></template>
+<template>
+  <h1>Home</h1>
+</template>
 
 <style scoped></style>
