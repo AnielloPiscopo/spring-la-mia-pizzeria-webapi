@@ -1,6 +1,6 @@
 <div align="center">
 <h1 align="center">
-<img src="https://img.shields.io/badge/java-%23ED8B00.svg?style&logo=openjdk&logoColor=white" width="100" />
+<img src="https://img.shields.io/badge/Spring-4FC08D.svg?style&logo=Spring&logoColor=white" width="100" />
 <br>SPRING-LA-MIA-PIZZERIA-WEBAPI
 </h1>
 <h3>◦ Simple exercise that contains a webpage for the pizzas of a series of restaurant with front-end and back-end sections</h3>
@@ -9,6 +9,7 @@
 <p align="center">
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style&logo=JavaScript&logoColor=black" alt="JavaScript" />
 <img src="https://img.shields.io/badge/HTML5-E34F26.svg?style&logo=HTML5&logoColor=white" alt="HTML5" />
+<img src="https://img.shields.io/badge/CSS3-E34F26.svg?style&logo=CSS3&logoColor=white" alt="CSS3" />
 <img src="https://img.shields.io/badge/Vite-646CFF.svg?style&logo=Vite&logoColor=white" alt="Vite" />
 <img src="https://img.shields.io/badge/Axios-5A29E4.svg?style&logo=Axios&logoColor=white" alt="Axios" />
 
