@@ -1,10 +1,10 @@
 <div align="center">
 <h1 align="center">
-<img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" />
-<br>spring-la-mia-pizzeria-webapi
+<img src="https://img.shields.io/badge/java-%23ED8B00.svg?style&logo=openjdk&logoColor=white" width="100" />
+<br>SPRING-LA-MIA-PIZZERIA-WEBAPI
 </h1>
-<h3>◦ HTTPStatus Exception: 429</h3>
-<h3>◦ Developed with the software and tools listed below.</h3>
+<h3>◦ Simple exercise that contains a webpage for the pizzas of a series of restaurant with front-end and back-end sections</h3>
+<h3>◦ Developed during the course of Java Web Developer with Experis</h3>
 
 <p align="center">
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style&logo=JavaScript&logoColor=black" alt="JavaScript" />
@@ -14,6 +14,7 @@
 
 <img src="https://img.shields.io/badge/Vue.js-4FC08D.svg?style&logo=vuedotjs&logoColor=white" alt="Vue.js" />
 <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style&logo=openjdk&logoColor=white" alt="java" />
+<img src="https://img.shields.io/badge/Spring-4FC08D.svg?style&logo=Spring&logoColor=white" alt="Spring" />
 <img src="https://img.shields.io/badge/JSON-000000.svg?style&logo=JSON&logoColor=white" alt="JSON" />
 <img src="https://img.shields.io/badge/Markdown-000000.svg?style&logo=Markdown&logoColor=white" alt="Markdown" />
 </p>
