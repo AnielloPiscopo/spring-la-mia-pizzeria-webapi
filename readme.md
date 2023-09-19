@@ -113,14 +113,14 @@ Before you begin, ensure that you have the following prerequisites installed:
 
 ### 📦 Installation
 
-1. Clone the java-gestore-eventi repository:
+1. Clone the repository:
 ```sh
-git clone https://github.com/AnielloPiscopo/java-gestore-eventi
+git clone https://github.com/AnielloPiscopo/spring-la-mia-pizzeria-webapi
 ```
 
 2. Change to the project directory:
 ```sh
-cd java-gestore-eventi
+cd spring-la-mia-pizzeria-webapi
 ```
 
 ---
